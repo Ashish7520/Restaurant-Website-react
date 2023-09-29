@@ -1,0 +1,21 @@
+header {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  background-color: brown;
+}
+
+h2 {
+  color: white;
+}
+
+button {
+  margin-top: 10px;
+  height: 40px;
+}
+
+img {
+  width: 100%;
+  height: 100px;
+  object-fit: cover;
+}

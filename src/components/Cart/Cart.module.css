@@ -6,6 +6,11 @@
   overflow: auto;
 }
 
+.liClass {
+  margin-left: 5px;
+  line-height: 25px;
+}
+
 .total {
   display: flex;
   justify-content: space-between;

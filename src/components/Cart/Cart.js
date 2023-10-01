@@ -9,8 +9,7 @@ const Cart = (props) => {
   const mergedArray = [];
 
   cartCtx.items.forEach((item) => {
-    const quantity = parseInt(item.quantity, 10); // Convert quantity to a number
-
+    const quantity = parseInt(item.quantity, 10);
     const existingItem = mergedArray.find(
       (existing) => existing.name === item.name
     );
@@ -22,16 +21,35 @@ const Cart = (props) => {
     }
   });
 
+  const addCartHandler = (itemName) => {
+    cartCtx.addItem({
+      ...cartCtx.items.find((item) => item.name === itemName),
+    });
+  };
+
+  const removeCartHandler = (itemName) => {
+    cartCtx.removeItem(itemName);
+  };
+
   let totalAmount = 0;
   mergedArray.map((item) => {
     totalAmount += item.price * item.quantity;
   });
+  totalAmount = totalAmount.toFixed(2);
 
   const cartItems = (
     <ul className={classes["cart-items"]}>
       {mergedArray.map((item) => (
         <li className={classes.liClass} key={item.name}>
-          Name:{item.name} Price:${item.price} - Quantity:{item.quantity}
+          <div>
+            <h2>{item.name}</h2>
+            <div className={classes.summary}>
+              <span className={classes.price}>${item.price}</span>
+              <span className={classes.amount}>x{item.quantity}</span>
+            </div>
+          </div>
+          <button onClick={() => removeCartHandler(item.name)}>-</button>
+          <button onClick={() => addCartHandler(item.name)}>+</button>
         </li>
       ))}
     </ul>
